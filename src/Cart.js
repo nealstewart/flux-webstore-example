@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from "./CartActions";
 
 class Cart extends Component {
   render() {
@@ -16,7 +17,7 @@ class Cart extends Component {
             <tr>
               <td>{item.product.name}</td>
               <td>{item.quantity}</td>
-              <td></td>
+              <td><button onClick={() => Actions.removeFromCart(item)}>X</button></td>
             </tr>
           ))}
         </tbody>

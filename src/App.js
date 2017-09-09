@@ -40,7 +40,7 @@ class App extends Component {
           {products.map(product => (
             <li key={product.id}>
               <h3>{product.name}</h3>
-              <button onClick={() => Actions.addTodo(product)}>
+              <button onClick={() => Actions.addToCart(product)}>
                 Add to cart
               </button>
             </li>

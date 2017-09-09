@@ -28,6 +28,12 @@ class CartStore extends Store {
 
                 return;
             }
+            case ActionTypes.REMOVE_FROM_CART: {
+                const {item} = payload;
+                this.items = this.items.filter(i => i !== item);
+                this.__emitChange();
+                return;
+            }
         }
     }
 }
