@@ -10,34 +10,39 @@ class Cart extends Component {
       0);
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Quantity</td>
-            <td>Unit Price</td>
-            <td>Line Total</td>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item, i) => (
-            <tr key={i}>
-              <td>{item.product.name}</td>
-              <td>{item.quantity}</td>
-              <td>{item.product.price}</td>
-              <td>{item.quantity * item.product.price}</td>
-              <td><button onClick={() => Actions.removeFromCart(item)}>X</button></td>
+      <div>
+        <header>
+          <h2>Your Shopping Cart</h2>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Quantity</td>
+              <td>Unit Price</td>
+              <td>Line Total</td>
             </tr>
-          ))}
-          <tr />
-          <tr>
-            <td />
-            <td />
-            <td>Total Price</td>
-            <td>{total}</td>
-          </tr>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item, i) => (
+              <tr key={i}>
+                <td>{item.product.name}</td>
+                <td>{item.quantity}</td>
+                <td>{item.product.price}</td>
+                <td>{item.quantity * item.product.price}</td>
+                <td><button onClick={() => Actions.removeFromCart(item)}>X</button></td>
+              </tr>
+            ))}
+            <tr />
+            <tr>
+              <td />
+              <td />
+              <td>Total Price</td>
+              <td>{total}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

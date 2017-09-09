@@ -38,18 +38,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>An Amazing Webstore</header>
-        <ul>
-          {products.map(product => (
-            <li key={product.id}>
-              <h3>{product.name}</h3>
-              <button onClick={() => Actions.addToCart(product)}>
-                Add to cart
-              </button>
-            </li>
-          ))}
-        </ul>
-        <Cart items={CartStore.items} />
+        <header>
+          <h1>An Amazing Webstore</h1>
+        </header>
+        <main>
+          <ul>
+            {products.map(product => (
+              <li key={product.id}>
+                <h3>{product.name}</h3>
+                <button onClick={() => Actions.addToCart(product)}>
+                  Add to cart
+                </button>
+              </li>
+            ))}
+          </ul>
+          <Cart items={CartStore.items} />
+        </main>
       </div>
     );
   }
