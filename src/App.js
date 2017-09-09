@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import CartStore from "./CartStore";
-import {Actions} from "./CartActions";
+import {Route, Link} from 'react-router-dom';
 import Cart from "./Cart";
+import Products from "./Products";
 import './App.css';
 
 const products = [
   {
     id: 1,
     name: "Paracetamol",
-    price: 10.00
+    price: 10.00,
+    imageUrl: "/products/nitrophenol-867289_640.png"
   },
   {
     id: 2,
     name: "Ibuprofen",
-    price: 12.00
+    price: 12.00,
+    imageUrl: "/products/painkillers-2525087_640.jpg"
   },
   {
     id: 3,
     name: "Rubbing alcohol",
-    price: 3.00
+    price: 3.00,
+    imageUrl: "/products/ethanol-1094992_640.png"
   },
 ];
 
@@ -40,19 +44,18 @@ class App extends Component {
       <div>
         <header>
           <h1>An Amazing Webstore</h1>
+          <Route exact path="/" component={() =>
+            <Link to="/cart">View cart ({CartStore.items.length})</Link>} />
+          <Route path="/cart" component={() =>
+            <Link to="/">Back to Products</Link>} />
         </header>
         <main>
-          <ul>
-            {products.map(product => (
-              <li key={product.id}>
-                <h3>{product.name}</h3>
-                <button onClick={() => Actions.addToCart(product)}>
-                  Add to cart
-                </button>
-              </li>
-            ))}
-          </ul>
-          <Cart items={CartStore.items} />
+          <Route exact path="/" component={() =>
+            <Products products={products} />
+          } />
+          <Route path="/cart" component={() =>
+            <Cart items={CartStore.items}/>
+          } />
         </main>
       </div>
     );

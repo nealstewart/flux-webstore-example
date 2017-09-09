@@ -1,50 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Actions} from "./CartActions";
+import "./Cart.css";
 
-class Cart extends Component {
-  render() {
-    const {items} = this.props;
+const calcTotal = items =>
+  items.reduce(
+    (runningTotal, item) => runningTotal + item.product.price * item.quantity,
+    0);
 
-    const total = items.reduce(
-      (runningTotal, item) => runningTotal + item.product.price * item.quantity,
-      0);
+const CartItem = ({item}) => (
+  <tr>
+    <td>{item.product.name}</td>
+    <td><img src={item.product.imageUrl} /></td>
+    <td>{item.quantity}</td>
+    <td>{item.product.price}</td>
+    <td>{item.quantity * item.product.price}</td>
+    <td><button onClick={() => Actions.removeFromCart(item)}>X</button></td>
+  </tr>
+);
 
-    return (
-      <div>
-        <header>
-          <h2>Your Shopping Cart</h2>
-        </header>
-        <table>
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Quantity</td>
-              <td>Unit Price</td>
-              <td>Line Total</td>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item, i) => (
-              <tr key={i}>
-                <td>{item.product.name}</td>
-                <td>{item.quantity}</td>
-                <td>{item.product.price}</td>
-                <td>{item.quantity * item.product.price}</td>
-                <td><button onClick={() => Actions.removeFromCart(item)}>X</button></td>
-              </tr>
-            ))}
-            <tr />
-            <tr>
-              <td />
-              <td />
-              <td>Total Price</td>
-              <td>{total}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
+const Cart = ({items}) => (
+  <div className="Cart">
+    <header>
+      <h2>Your Shopping Cart</h2>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td />
+          <td>Quantity</td>
+          <td>Unit Price</td>
+          <td>Line Total</td>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item, i) => (
+          <CartItem key={i} item={item} />
+        ))}
+        <tr />
+        <tr>
+          <td />
+          <td />
+          <td />
+          <td><strong>Total Price</strong></td>
+          <td>{calcTotal(items)}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+);
 
 export default Cart;
