@@ -7,15 +7,18 @@ import './App.css';
 const products = [
   {
     id: 1,
-    name: "Paracetamol"
+    name: "Paracetamol",
+    price: 10.00
   },
   {
     id: 2,
-    name: "Ibuprofen"
+    name: "Ibuprofen",
+    price: 12.00
   },
   {
     id: 3,
-    name: "Rubbing alcohol"
+    name: "Rubbing alcohol",
+    price: 3.00
   },
 ];
 
